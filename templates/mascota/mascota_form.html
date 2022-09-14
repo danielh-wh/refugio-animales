@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <form method="POST" class="col-md-6 container" style="padding-top: 3%; padding-bottom: 3%">
+            <h2>Funciones</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary form-control">Guardar</button>
+    </form>
+{% endblock %}

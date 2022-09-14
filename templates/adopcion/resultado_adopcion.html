@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="container col-md-10" style="padding-top:3%">
+        <h2>Clases</h2>
+    <form action="/adopcion/buscarS">
+    <div class="form-group">
+        <div class="row col-md-6">
+            <div class="col-md-8">
+                <input type="text"  name="q" class="form-control" placeholder="Busqueda" value="{{ query }}"><br>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn-primary form-control">BUSCAR</button>
+            </div>
+        </div>
+    </div><hr><br>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>No. Solicitud</td>
+                <td>Foto</td>
+                <td>Adoptante</td>
+                <td>No. Mascotas</td>
+                <td>Razones</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% if solicitud %}
+        {% for solicitud in solicitud %}
+            <tr>
+                <td>{{ solicitud.id }}</td>
+                <td><img src="/images/{{ solicitud.persona.imagen_perfil }}" height="40" width="40"></td>
+                <td>{{ solicitud.persona.nombre }} {{ solicitud.persona.apellidos }}</td>
+                <td>{{ solicitud.numero_mascotas }}</td>
+                <td>{{ solicitud.razones }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'editar_funciones' solicitud.id %}">Editar</a>
+                    <a class="btn btn-danger" href="{% url 'eliminar_funciones' solicitud.id %}">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        {% else %}
+        <h3>No hay registros</h3>
+        {% endif %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

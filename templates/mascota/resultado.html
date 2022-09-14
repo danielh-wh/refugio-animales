@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="container col-md-10" style="
+    padding-top:3%">
+    <form action="/mascota/buscar_mascota/">
+    <div class="form-group">
+        <div class="row col-md-6">
+            <div class="col-md-8">
+                <input type="text"  name="q" class="form-control" placeholder="Busqueda" value="{{ query }}"><br>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn-primary form-control">BUSCAR</button>
+            </div>
+        </div>
+    </div><hr><br>
+    </form>
+        <table class="table">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Nombre</td>
+                <td>Genero</td>
+                <td>Edad</td>
+                <td>Fecha de rescate</td>
+                <td>Adoptante</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% if mascotas %}
+        {% for mascotas in mascotas %}
+            <tr>
+                <td>{{ mascotas.id }}</td>
+                <td>{{ mascotas.nombre }}</td>
+                <td>{{ mascotas.genero }}</td>
+                <td>{{ mascotas.edad_aproximada }}</td>
+                <td>{{ mascotas.fecha_rescate }}</td>
+                <td>{{ mascotas.persona.nombre }} {{ mascota.persona.apellidos }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'mascota_edit' mascotas.id%}">Editar</a>
+                    <a class="btn btn-danger" href="{% url 'mascota_delete' mascotas.id %}">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        {% else %}
+            <script>
+                alert('No hay resultados')
+                history.back()
+            </script>
+        <h3>No hay resultados</h3>
+        {% endif %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}

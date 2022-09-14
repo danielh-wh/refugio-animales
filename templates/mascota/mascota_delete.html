@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <form method="POST" class="col-md-6 container" style="padding-top: 3%; padding-bottom: 3%">
+        {% csrf_token %}
+        <h3>¿Desea eliminar el registro '{{ mascota.nombre }}'?</h3>
+        <br>
+        <button type="submit" class="btn btn-danger form-control">SI, ELIMINAR</button>
+        <br><br>
+        <a class="btn btn-primary form-control" href="{%  url 'mascota_lis' %}">NO, REGRESAR</a>
+    </form>
+{% endblock %}

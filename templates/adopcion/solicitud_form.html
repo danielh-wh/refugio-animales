@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data" class="container col-md-6" style="padding-top: 3%; padding-bottom: 3%" >
+    {% csrf_token %}
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="{{ form2.nombre.name }}">{{ form2.nombre.label }}</label>
+                {{ form2.nombre }}<br>
+                <label for="{{ form2.apellidos.name }}">{{ form2.apellidos.label }}</label>
+                {{ form2.apellidos }}<br>
+                <label for="{{ form2.imagen_perfil.name }}"></label>{{ form2.imagen_perfil }}
+            </div>
+            <div class="col-md-6">
+                <img src="/images/{{ solicitud.persona.imagen_perfil }}" width="230" align="right">
+            </div>
+        </div>
+    </div><br>
+
+    <div class="form-group">
+        <label for="{{ form2.edad.name }}">{{ form2.edad.label }}</label>
+        {{ form2.edad }}
+    </div><br>
+    <div class="form-group">
+        <label for="{{ form2.telefono.name }}">{{ form2.telefono.label }}</label>
+        {{ form2.telefono }}
+    </div><br>
+    <div class="form-group">
+        <label for="{{ form2.email.name }}">{{ form2.email.label }}</label>
+        {{ form2.email }}
+    </div><br>
+    <div class="form-group">
+        <label for="{{ form2.domicilio.name }}">{{ form2.domicilio.label }}</label>
+        {{ form2.domicilio }}
+    </div><br>
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary form-control">GUARDAR</button>
+    </form>
+
+{% endblock %}
